@@ -47,7 +47,6 @@ def jointure(table1, table2, cle1, cle2=None):
     return new_table
 
 print(select(import_csv('localisation_colleges_cotes_d_armor.csv'), 'ligne["Commune"]=="DINAN"'))
-print()
 print(projection(import_csv('localisation_colleges_cotes_d_armor.csv'), ['Communesrelevantdusecteurderecrutement', 'Detailsecteurscolaire', 'Commune', 'college']))
 print(tri(import_csv('localisation_colleges_cotes_d_armor.csv'), 'Commune', False))
 print(jointure(import_csv('base.csv'), import_csv('base2.csv'), 'Nom', 'Name'))
