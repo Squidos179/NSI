@@ -43,6 +43,6 @@ jaajjaaj = [{'Nom': 'feur', 'E': True}, {'Nom': 'Axel', 'E': False}, {'Nom': 'ja
 
 print(import_csv('base.csv'))
 print(export_to_csv('jaajjaaj', ['Nom', 'E']))
-print(select(jaajjaaj, 'ligne["E"]==False'))
+print(select(import_csv('base.csv'), 'ligne["Nom"]=="Joe"'))
 print(projection(jaajjaaj, ['Nom']))
 print(tri(jaajjaaj, 'Nom', False))

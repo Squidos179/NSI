@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import csv
 
 def import_csv(fichier):
@@ -14,4 +16,4 @@ def select(table, critere):
         return eval(critere)
     return [ligne for ligne in table if test(ligne)]
 
-print(select(import_csv('effectifs_colleges_cotes_d_armor.csv'), "'DINAN' in ligne(collge)"))
+print(select(import_csv('localisation_colleges_cotes_d_armor.csv'), 'ligne["Commune"]=="DINAN"'))
