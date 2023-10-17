@@ -5,9 +5,9 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     return render_template("index.html")
-@app.route('/resultat', methods = ['POST'])
+@app.route('/resultat', methods = ['GET'])
 def resultat():
-    result = request.form
+    result = request.args
     n = result['nom']
     p = result['prenom']
     return render_template("resultat.html", nom=n, prenom=p)
