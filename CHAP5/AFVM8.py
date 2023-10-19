@@ -19,41 +19,41 @@ class Train:
         while wagon is not None:
             if wagon.contenu == contenu:
                 return True
-            ... = wagon....
+            wagon = wagon.suivant
         return False
     def ajoute_wagon(self, nouveau):
         """Ajoute un wagon à la fin de ce train.
         L'argument est le wagon à ajouter
         """
         if self.est_vide():
-            self.premier = ...
+            self.premier = nouveau
         else:
             wagon = self.premier
-            while ....suivant is not None:
-                wagon = ....suivant
-            wagon.suivant = ...
-        self.nb_wagons = ...
+            while wagon.suivant is not None:
+                wagon = wagon.suivant
+            wagon.suivant = nouveau
+        self.nb_wagons += 1
     def supprime_wagon_de(self, contenu):
         """Supprime le premier wagon de {contenu}
         Renvoie False si ce train ne contient pas de {contenu},
         True si la suppression est effectuée
         """
         if self.est_vide():
-            return ...
+            return False
         if self.premier.contenu == contenu:
-            self.premier = self.premier....
+            self.premier = self.premier.suivant
         else:
             precedent = self.premier
             wagon = precedent.suivant
-            while wagon.contenu != ...:
-                precedent = ...
-                wagon = wagon....
+            while wagon.contenu != contenu:
+                precedent = self.premier
+                wagon = wagon.suivant
                 if wagon is None: # pas de "contenu" dans le train
-                ...
+                    return False
             precedent.suivant = wagon.suivant
         # MAJ du nombre de wagons et résultat de la fonction
-        self.nb_wagons = ...
-        return ...
+        self.nb_wagons -= 1
+        return True
     def __repr__(self):
         "Affichage dans la console"
         contenus_wagons = ['']
