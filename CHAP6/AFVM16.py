@@ -38,7 +38,7 @@ def draw_branch(n, longueur=30):
 t=Turtle()
 t.speed(0)
 distance = 300
-profondeur = 56
+profondeur = 5
 t.up()
 t.setpos(-300,100)
 for i in range(3):

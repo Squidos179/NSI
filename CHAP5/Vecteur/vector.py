@@ -2,7 +2,7 @@ from __future__ import annotations
 from math import sqrt
 
 class Vector2D:
-    def __init__(self:Vector2D, x:float | int, y:float | int):
+    def __init__(self, x:float, y:float)->None:
         """
         Constructeur de la class Vector2D
         Args:
@@ -12,39 +12,38 @@ class Vector2D:
             Ne retourne rien
         """
         try:
-            if type(x or y) != int and type(x or y) != float:
+            if (type(x) != int and type(x) != float) or (type(y) != int and type(y) != float):
                 raise TypeError
         except TypeError:
             print("Les valeurs entrées pour le vecteur sont autres que des entiers ou des décimaux, veuillez réessayer.")
         else:
             self.x = x
             self.y = y
-            print(self)
 
-    def norm(self):
+    def norm(self)->float:
         """
         Donne la norme d'un vecteur
         Return:
             Le calcul de la norme du vecteur donné en paramètre
         """
         try:
-            if type(self.x or self.y) != int and type(self.x or self.y) != float:
+            if (type(self.x) != int and type(self.x) != float) or (type(self.y) != int and type(self.y) != float):
                 raise TypeError
         except TypeError:
             print("Les valeurs entrées pour le vecteur sont autres que des entiers ou des décimaux, veuillez réessayer.")
         else:
             return sqrt(self.x**2 + self.y**2)
     
-    def multiply(self, coefficient:float):
+    def multiply(self, coefficient:float)->None:
         """
         Multiplie un vecteur par un coefficient
         Args:
-            coefficient : un entier
+            coefficient : un décimal
         Return:
             Ne retourne rien car modifie directement le vecteur donné
         """
         try:
-            if type(self.x or self.y) != int and type(self.x or self.y) != float:
+            if (type(self.x) != int and type(self.x) != float) or (type(self.y) != int and type(self.y) != float):
                 raise TypeError
             if type(coefficient) != int and type(coefficient) != float:
                 raise TypeError
@@ -54,16 +53,16 @@ class Vector2D:
             self.x *= coefficient
             self.y *= coefficient
 
-    def add(self, vector):
+    def add(self, vector:Vector2D)->None:
         """
         Ajoute à un vecteur un autre vecteur
         Args:
-            self : un objet de type Vector2D auquel on va ajouter un autre Vector2D
+            vector : un objet de type Vector2D
         Return:
             Ne retourne rien car modifie directement le vecteur donné
         """
         try:
-            if type(self.x or self.y) != int and type(self.x or self.y) != float:
+            if (type(self.x) != int and type(self.x) != float) or (type(self.y) != int and type(self.y) != float):
                 raise TypeError
             if type(vector) != Vector2D:
                 raise TypeError
@@ -73,7 +72,7 @@ class Vector2D:
             self.x += vector.x
             self.y += vector.y
 
-    def scalarProduct(self, vector):
+    def scalarProduct(self, vector:Vector2D)->float:
         """
         Calcul le produit scalaire de deux vecteur
         Args:
@@ -82,7 +81,7 @@ class Vector2D:
             Retourne un décimal qui est le produit scalaire du vecteur et d'un autre vecteur
         """
         try:
-            if type(self.x or self.y) != int and type(self.x or self.y) != float:
+            if (type(self.x) != int and type(self.x) != float) or (type(self.y) != int and type(self.y) != float):
                 raise TypeError
             if type(vector) != Vector2D:
                 raise TypeError
@@ -91,7 +90,7 @@ class Vector2D:
         else:
             return self.x*vector.x + self.y*vector.y
     
-    def perpendicular(self, vector):
+    def perpendicular(self, vector:Vector2D)->bool:
         """
         Permet de savoir le vecteur et un autre vecteur sont perpendiculaire
         Args:
@@ -100,7 +99,7 @@ class Vector2D:
             Retourne True si les deux vecteurs sont perpendiculaires et False si ce n'est pas le cas
         """
         try:
-            if type(self.x or self.y) != int and type(self.x or self.y) != float:
+            if (type(self.x) != int and type(self.x) != float) or (type(self.y) != int and type(self.y) != float):
                 raise TypeError
             if type(vector) != Vector2D:
                 raise TypeError
@@ -109,7 +108,7 @@ class Vector2D:
         else:
             return self.scalarProduct(vector) == 0
     
-    def colinear(self, vector):
+    def colinear(self, vector:Vector2D)->bool:
         """
         Permet de savoir le vecteur et un autre vecteur sont colinéaire
         Args:
@@ -118,7 +117,7 @@ class Vector2D:
             Retourne True si les deux vecteurs sont colinéaires et False si ce n'est pas le cas
         """
         try:
-            if type(self.x or self.y) != int and type(self.x or self.y) != float:
+            if (type(self.x) != int and type(self.x) != float) or (type(self.y) != int and type(self.y) != float):
                 raise TypeError
             if type(vector) != Vector2D:
                 raise TypeError
@@ -127,7 +126,7 @@ class Vector2D:
         else:
             return self.x * vector.y - self.y * vector.x == 0
     
-    def __mul__(self, vector):
+    def __mul__(self, vector:Vector2D)->float:
         """
         Permet de gérer un cas de multiplication de deux vecteurs
         Args:
@@ -136,7 +135,7 @@ class Vector2D:
             Retourne un décimal qui est le résultat de la fonction "scalarProduct" avec en paramètre 'vector'
         """
         try:
-            if type(self.x or self.y) != int and type(self.x or self.y) != float:
+            if (type(self.x) != int and type(self.x) != float) or (type(self.y) != int and type(self.y) != float):
                 raise TypeError
             if type(vector) != Vector2D:
                 raise TypeError
@@ -145,7 +144,7 @@ class Vector2D:
         else:
             return self.scalarProduct(vector)
     
-    def __add__(self, vector):
+    def __add__(self, vector:Vector2D) -> Vector2D:
         """
         Permet de gérer un cas d'addition de deux vecteurs
         Args:
@@ -154,7 +153,7 @@ class Vector2D:
             Retourne un nouvel objet de type Vector2D avec en attribut l'addition de deux vecteurs
         """
         try:
-            if type(self.x or self.y) != int and type(self.x or self.y) != float:
+            if (type(self.x) != int and type(self.x) != float) or (type(self.y) != int and type(self.y) != float):
                 raise TypeError
             if type(vector) != Vector2D:
                 raise TypeError
@@ -163,7 +162,7 @@ class Vector2D:
         else:
             return Vector2D(self.x + vector.x, self.y + vector.y)
     
-    def __repr__(self):
+    def __repr__(self)->str:
         """
         Represente le vecteur avec un string
         
@@ -179,7 +178,13 @@ class Vector2D:
         Return:
             Retourne la même chose que le __repr__ donc un string qui donne les valeurs du vecteur
         """
-        return self.__repr__()
+        try:
+            if (type(self.x) != int and type(self.x) != float) or (type(self.y) != int and type(self.y) != float):
+                raise TypeError
+        except TypeError:
+            print("Les valeurs entrées pour le vecteur sont autres que des entiers ou des décimaux, veuillez réessayer.")
+        else:
+            return self.__repr__()
     
 # Création de vecteurs pour les tests
 vec1 = Vector2D(3.0, 4)
