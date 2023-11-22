@@ -51,11 +51,11 @@ def tri_a_bulle(liste):
                 liste[i], liste[i+1] = liste[i+1], liste[i]
     return liste
 
-tps = timeit("triFusion([0, 2, 3, 47, 56, 5, 78, 56, 67, 2, 4.5, 3, 2])", number = 1000000, globals=globals())
+tps = timeit("triFusion([0, 2, 3, 47, 56, 5, 78, 56, 67, 2, 4.5, 3, 2])", number = 10000, globals=globals())
 print(f"Temps écoulé pour 1 000 000 exécution de la fonction tri fusion : {tps} ")
-tps2 = timeit("tri_insertion([0, 2, 3, 47, 56, 5, 78, 56, 67, 2, 4.5, 3, 2])", number = 1000000, globals=globals())
+tps2 = timeit("tri_insertion([0, 2, 3, 47, 56, 5, 78, 56, 67, 2, 4.5, 3, 2])", number = 10000, globals=globals())
 print(f"Temps écoulé pour 1 000 000 exécution de la fonction tri insertion : {tps2} ")
-tps3 = timeit("tri_selection([0, 2, 3, 47, 56, 5, 78, 56, 67, 2, 4.5, 3, 2])", number = 1000000, globals=globals())
+tps3 = timeit("tri_selection([0, 2, 3, 47, 56, 5, 78, 56, 67, 2, 4.5, 3, 2])", number = 10000, globals=globals())
 print(f"Temps écoulé pour 1 000 000 exécution de la fonction tri selection : {tps3} ")
-tps4 = timeit("tri_a_bulle([0, 2, 3, 47, 56, 5, 78, 56, 67, 2, 4.5, 3, 2])", number = 1000000, globals=globals())
+tps4 = timeit("tri_a_bulle([0, 2, 3, 47, 56, 5, 78, 56, 67, 2, 4.5, 3, 2])", number = 10000, globals=globals())
 print(f"Temps écoulé pour 1 000 000 exécution de la fonction tri à bulles : {tps4} ")
