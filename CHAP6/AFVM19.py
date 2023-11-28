@@ -1,23 +1,26 @@
 from math import sqrt
 from PIL import Image
 MAX_ITER = 50
-def reccurenceMandelbrot(m, c):
-    x = m[0]**2-m[1]**2
-    y = 2*m[0]*m[1]+c[0]
+def reccurenceMandelbrot(c):
+    x = c[0]
+    x1 = c[0]
+    y = c[1]
+    y1 = c[1]
+    n = 0
+    while n<MAX_ITER and sqrt(x**2 + y**2) < 2:
+        n+=1
+        x = x**2-y**2+c[0]
+        y = 2*x1*y+c[1]
+        x1 = x1**2-y1**2+c[0]
+        y1 = y
     return [x, y]
 def appartientAEnsembleMandelbrot(c) :
-    m = [0,0]
-    d = sqrt(m[0]**2+m[1]**2)
-    n=0
-    while d < 2 and n < MAX_ITER:
-        m = reccurenceMandelbrot(m,c)
-        n+= 1
-        d = sqrt(m[0]**2+m[1]**2)
-        if n >= MAX_ITER:
-            return False
-    return True
+    if sqrt(reccurenceMandelbrot(c)[0]**2 + reccurenceMandelbrot(c)[1]**2) < 2:
+        return True
+    else:
+        return False
 #CORPS DE PROGRAMME
-LARG, HAUT = 600, 600
+LARG, HAUT = 6000, 6000
 MIN_X, MAX_X = -2, 2
 MIN_Y, MAX_Y = -2, 2
 coef_x = (MAX_X - MIN_X)/LARG
