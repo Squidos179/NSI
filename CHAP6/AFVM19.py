@@ -20,7 +20,7 @@ def appartientAEnsembleMandelbrot(c) :
     else:
         return False
 #CORPS DE PROGRAMME
-LARG, HAUT = 6000, 6000
+LARG, HAUT = 10000, 10000
 MIN_X, MAX_X = -2, 2
 MIN_Y, MAX_Y = -2, 2
 coef_x = (MAX_X - MIN_X)/LARG
