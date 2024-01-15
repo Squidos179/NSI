@@ -1,8 +1,8 @@
 #include <iostream>
 
-class Jaaj{
+class BinTree{
     public:
-        Jaaj::Jaaj(int vie);
+        BinTree();
     private:
         int m_vie;
 };

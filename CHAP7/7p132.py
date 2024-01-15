@@ -26,11 +26,10 @@ class BinTree:
     
     def __str__(self):
         if self._right == None and self._left == None:
-            return '(' + self._data + ')'
-        elif self._right == None:
-            return '(' + self._data + ')' + self._left.__str__()
-        elif self._left == None:
-            return '(' + self._data + ')' + self._right.__str__()
+            return self._data
+        else:
+            return self._data + self._left.__str__() + self._right.__str__()
+        
     
 def size(arbre:BinTree)->int:
     if arbre == None:
@@ -60,7 +59,67 @@ def feuilles(arbre:BinTree)->int:
 def noeud(arbre:BinTree)->int:
     return size(arbre) - feuilles(arbre)
 
-feur  = BinTree("A", BinTree("B", BinTree("D"), BinTree("E", BinTree("H"), BinTree("I", BinTree("N"), BinTree("O")))), BinTree("C", BinTree("F", BinTree("J"), BinTree("K")), BinTree("G", BinTree("L"), BinTree("M", BinTree("P"), BinTree("Q")))))
-a = BinTree("A")
+jaaj  = BinTree("A", BinTree("B", BinTree("D"), BinTree("E", BinTree("H"), BinTree("I", BinTree("N"), BinTree("O")))), BinTree("C", BinTree("F", BinTree("J"), BinTree("K")), BinTree("G", BinTree("L"), BinTree("M", BinTree("P"), BinTree("Q")))))
 
+def prefixe(arbre:BinTree)-> None:
+    print(arbre._data)
+    if (arbre._left != None) :
+        prefixe(arbre._left)
+    if (arbre._right != None) :
+        prefixe(arbre._right) 
+
+def infixe(arbre:BinTree)-> None:
+    global feur
+    if (arbre._left != None) :
+        infixe(arbre._left)
+    feur.append(arbre._data)
+    if (arbre._right != None) :
+        infixe(arbre._right)
+
+def postfixe(arbre:BinTree)-> None:
+    if (arbre._left != None) :
+        infixe(arbre._left)
+    if (arbre._right != None) :
+        infixe(arbre._right)
+    print(arbre._data)
+
+def insertion(arbre:BinTree, key:str) :
+    if arbre._data == None :
+        return BinTree(key, None, None)
+    else :
+        e = arbre._data
+        if e < key :
+            return BinTree(e, insertion(arbre._left, key), arbre._right)
+        else :
+            return BinTree(e, arbre._left, insertion(arbre._right, key))
+
+def recherche(arbre:list) :
+    if arbre == None:
+        return False
+    for i in range(len(arbre) - 1):
+        if arbre[i] > arbre[i + 1]:
+            return False
+    return True
+
+def max(arbre:list):
+    if recherche(arbre):
+        return arbre[len(arbre) - 1]
+    return False
+
+def min(arbre:list):
+    if recherche(arbre):
+        return arbre[0]
+    return False
+
+def e(arbre:list, key):
+    for i in arbre:
+        if i == key:
+            return True
+    return False
+
+feur = []
+jaaj = BinTree(13, BinTree(11, BinTree(4), BinTree(12)), BinTree(16))
+
+infixe(jaaj)
 print(feur)
+print(min(feur))
