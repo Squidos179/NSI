@@ -2,7 +2,7 @@ import pygame
 
 class Snake:
     rect = [5, 5]
-    x = 400
-    y = 300
-    lx = 400
-    ly = 300
+    x = -1000
+    y = -1000
+    fx = 300
+    fy = 300
