@@ -32,10 +32,17 @@ while run :
     surf.fill((0, 0, 0))
     for i in range(0 , 800, 40):
         for p in range(0, 600, 40):
-            pygame.draw.rect(surf, (0, 50, 40), (i, p, 20, 20))
-    for i in range(20, 820, 40):
-        for p in range(-20, 620, 40):
-            pygame.draw.rect(surf, (0, 50, 60), (i, p, 20, 20))
+            pygame.draw.rect(surf, (0x0B, 0x8E, 0x3F), (i, p, 20, 20))
+    for i in range(20, 800, 40):
+        for p in range(20, 600, 40):
+            pygame.draw.rect(surf, (0x0B, 0x8E, 0x3F), (i, p, 20, 20))
+
+    for i in range(0 ,800, 40):
+        for p in range(20, 600, 40):
+            pygame.draw.rect(surf, (0x35, 0xAE, 0x3B), (i, p, 20, 20))
+    for i in range(20, 800, 40):
+        for p in range(0, 600, 40):
+            pygame.draw.rect(surf, (0x35, 0xAE, 0x3B), (i, p, 20, 20))
     for i in snakes:
         pygame.draw.rect(surf, (255, 255, 255), (i.x, i.y, 20, 20))
     pygame.draw.rect(surf, (255, 0, 0), (xr, yr, 20, 20))
