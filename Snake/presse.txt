@@ -1,0 +1,20 @@
+
+    if snakes[0].x > xr -20 and snakes[0].y > yr - 20 and snakes[0].x < xr + 20 and snakes[0].y < yr + 20:
+        xr, yr = randint(0, 39) * 20, randint(0, 29) * 20
+        score += 1
+        snakes.append(Anneau)
+    if snakes[0].x > 780 or snakes[0].x < 0 or snakes[0].y > 580 or snakes[0].y < 0:
+        score = 0
+        snakes[0].x, snakes[0].y = 400, 300
+        vec2D = [0, 0]
+        for i in range(len(snakes) - 1, 0, -1):
+            del(snakes[i])
+        xr, yr = randint(0, 39) * 20, randint(0, 29) * 20
+    for i in snakes[1:]:
+        if snakes[0].x == i.x and snakes[0].y == i.y:
+            score = 0
+            snakes[0].x, snakes[0].y = 400, 300
+            vec2D = [0, 0]
+            for i in range(len(snakes) - 1, 0, -1):
+                del(snakes[i])
+            xr, yr = randint(0, 39) * 20, randint(0, 29) * 20
