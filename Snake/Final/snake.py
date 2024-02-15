@@ -10,8 +10,6 @@ class Serpent:
 
         self.vec2D = [0, 0]
 
-        self.px, self.py = randint(0, 39) * 20, randint(0, 29) * 20
-
         self.score = 0
 
     def keyHandling(self):
@@ -74,18 +72,8 @@ class Serpent:
 
             suivant = suivant.suivant
 
-        #Partie collision avec la pomme
-            
-        if self.head.x > self.px - 20 and self.head.y > self.py - 20 and self.head.x < self.px + 20 and self.head.y < self.py + 20:
-            self.px, self.py = randint(0, 39) * 20, randint(0, 29) * 20
-            self.score += 1
-            for i in range(5):
-                self.head.ajout()
-
-
     def render(self, surf, scoreFont):
         self.head.render(surf)
-        pygame.draw.rect(surf, (255, 0, 0), (self.px, self.py, 20, 20))
 
         scoreText = scoreFont.render(str(self.score), True, (255, 255, 255))
         surf.blit(scoreText, (20, 20))

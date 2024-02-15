@@ -23,7 +23,6 @@ class Serpent2(Serpent):
 
     def render(self, surf, scoreFont):
         self.head.render(surf)
-        pygame.draw.rect(surf, (0, 0, 255), (self.px, self.py, 20, 20))
 
         scoreText = scoreFont.render(str(self.score), True, (255, 255, 255))
         surf.blit(scoreText, (780, 20))

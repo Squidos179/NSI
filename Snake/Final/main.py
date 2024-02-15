@@ -21,11 +21,27 @@ def collisionSerpents(serpent1, serpent2):
         
         suivant1 = suivant1.suivant
 
+def collision_pomme(serpent1, serpent2 = None):
+        global pommex, pommey
+        if serpent1.head.x > pommex - 20 and serpent1.head.y > pommey - 20 and serpent1.head.x < pommex + 20 and serpent1.head.y < pommey + 20:
+            pommex, pommey = randint(0, 39) * 20, randint(0, 29) * 20
+            serpent1.score += 1
+            for i in range(5):
+                serpent1.head.ajout()
+        if serpent2 != None:
+            if serpent2.head.x > pommex - 20 and serpent2.head.y > pommey - 20 and serpent2.head.x < pommex + 20 and serpent2.head.y < pommey + 20:
+                pommex, pommey = randint(0, 39) * 20, randint(0, 29) * 20
+                serpent2.score += 1
+                for i in range(5):
+                    serpent2.head.ajout()
+
 def damier(colors, surf):
     for i in range(0 , 40):
         for p in range(0, 30):
             pygame.draw.rect(surf, colors[p%2], (i * 20, p * 20, 20, 20))
         colors.reverse()
+
+pommex, pommey = randint(0, 39) * 20, randint(0, 29) * 20
 
 jaaj = snake.Serpent()
 jaaj.head.x = 400
@@ -66,13 +82,18 @@ while run :
     clock.tick(10)
 
     damier(colors, surf)
+    pygame.draw.rect(surf, (255, 0, 0), (pommex, pommey, 20, 20))
         
     jaaj.update()
     jaaj.render(surf, scoreFont)
 
-    if mode == 2:
+    if mode == '1':
+        collision_pomme(jaaj)
+
+    if mode == '2':
 
         jeej.update()
+        collision_pomme(jaaj, jeej)
         jeej.render(surf, scoreFont)
 
         result = collisionSerpents(jaaj, jeej)
