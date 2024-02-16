@@ -70,7 +70,9 @@ while run :
     jaaj.update()
     jaaj.render(surf, scoreFont)
 
-    if mode == 2:
+    if mode == '2':
+
+        print('feur')
 
         jeej.update()
         jeej.render(surf, scoreFont)

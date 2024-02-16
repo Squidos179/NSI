@@ -34,6 +34,25 @@ def dic_to_matrice(G):
                 matrice[i][j] = 1
     return matrice
 
+
+def matrix_to_dic(matrice):
+    sommets = ['a', 'b', 'c', 'd', 'e', 'f']
+    jaaj = {sommet: [] for sommet in sommets}
+    for i in range(len(matrice)):
+        for p in range(len(matrice)):
+            if matrice[i][p] == 1:
+                jaaj[sommets[i]].append(sommets[p])
+    return jaaj
+
+def matrix_to_dico_pond(matrice, noms):
+    dico = {}
+    for i in range(len(matrice)):
+        dico[noms[i]] = {}
+        for j in range(len(matrice)):
+            if matrice[i][j] != 0:
+                dico[noms[i]][noms[j]] = matrice[i][j]
+    return dico
+
 G = {}
 G['a'] = ['b', 'c', 'd']
 G ['b'] = ['a', 'd']
@@ -57,6 +76,13 @@ for key in G.keys():
 print(lister_aretes(G))
 """
 
-feur = matrice(G)
-for i in feur:
-    print(i)
+noms=["A","B","C","D","E","F","G"]
+matrice=[ [0,12,20,9,0,0,0],
+[12,0,0,0,0,0,13],
+[20,0,0,8,0,11,7],
+[9,0,8,0,0,21,0],
+[0,0,0,0,0,3,9],
+[0,0,11,21,3,0,5],
+[0,13,7,0,9,5,0]]
+
+print(matrix_to_dico_pond(matrice, noms))
