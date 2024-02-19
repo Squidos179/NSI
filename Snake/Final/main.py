@@ -1,8 +1,9 @@
 import pygame
 from random import randint
-from anneau import Anneau
 import snake
 import snake2
+
+from constants import MULTIPLE, LARG, HAUT
 
 def collisionSerpents(serpent1, serpent2):
     suivant1 = serpent1.head.suivant
@@ -24,28 +25,28 @@ def collisionSerpents(serpent1, serpent2):
 def collision_pomme(serpent1, serpent2 = None):
         global pommex, pommey
         if serpent1.head.x > pommex - 20 and serpent1.head.y > pommey - 20 and serpent1.head.x < pommex + 20 and serpent1.head.y < pommey + 20:
-            pommex, pommey = randint(0, 39) * 20, randint(0, 29) * 20
+            pommex, pommey = randint(0, LARG - 1) * 20, randint(0, HAUT) * 20
             serpent1.score += 1
             for i in range(5):
                 serpent1.head.ajout()
         if serpent2 != None:
             if serpent2.head.x > pommex - 20 and serpent2.head.y > pommey - 20 and serpent2.head.x < pommex + 20 and serpent2.head.y < pommey + 20:
-                pommex, pommey = randint(0, 39) * 20, randint(0, 29) * 20
+                pommex, pommey = randint(0, LARG) * 20, randint(0, LARG) * 20
                 serpent2.score += 1
                 for i in range(5):
                     serpent2.head.ajout()
 
 def damier(colors, surf):
-    for i in range(0 , 40):
-        for p in range(0, 30):
-            pygame.draw.rect(surf, colors[p%2], (i * 20, p * 20, 20, 20))
+    for i in range(0 , MULTIPLE):
+        for p in range(0, MULTIPLE):
+            pygame.draw.rect(surf, colors[p%2], (i * LARG, p * HAUT, 20, 20))
         colors.reverse()
 
-pommex, pommey = randint(0, 39) * 20, randint(0, 29) * 20
+pommex, pommey = randint(0, LARG - 1) * 20, randint(0, HAUT - 1) * 20
 
 jaaj = snake.Serpent()
-jaaj.head.x = 400
-jaaj.head.y = 300
+jaaj.head.x = 340
+jaaj.head.y = 340
 
 response = False
 mode = None
@@ -59,17 +60,20 @@ while response != True:
     elif mode == '2':
         response = True
         jeej = snake2.Serpent2()
-        jeej.head.x = 600
-        jeej.head.y = 300
+        jeej.head.x = 460
+        jeej.head.y = 320
         jaaj.head.x = 200
-        jaaj.head.y = 300   
+        jaaj.head.y = 320
     else:
         print('Réponse incorrect, veuillez tapez 1 ou 2')
 
 pygame.init()
 pygame.font.init()
 
-surf = pygame.display.set_mode((800, 600))
+surf = pygame.display.set_mode((LARG * MULTIPLE, LARG * MULTIPLE))
+pygame.display.set_caption('Snake !')
+ico = pygame.image.load("ico.png")
+pygame.display.set_icon(ico)
 run = True
 clock = pygame.time.Clock()
 scoreFont = pygame.font.SysFont(None, 30)

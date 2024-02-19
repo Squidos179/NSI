@@ -1,6 +1,6 @@
 import pygame
-from random import randint
 from anneau import Anneau
+from constants import MULTIPLE, LARG, HAUT
 
 class Serpent:
 
@@ -29,10 +29,9 @@ class Serpent:
 
     def gameOver(self):
         self.score = 0
-        self.head.x, self.head.y = 400, 300
+        self.head.x, self.head.y = (LARG * MULTIPLE) / 2, (HAUT * MULTIPLE) / 2
         self.vec2D = [0, 0]
         self.head.suivant = None
-        self.px, self.py = randint(0, 39) * 20, randint(0, 29) * 20
 
     def collision(self):
         suivant = self.head.suivant
@@ -44,7 +43,7 @@ class Serpent:
             
             suivant = suivant.suivant
 
-        if self.head.x > 780 or self.head.x < 0 or self.head.y > 580 or self.head.y < 0:
+        if self.head.x > (LARG * MULTIPLE) - 20 or self.head.x < 0 or self.head.y > (HAUT * MULTIPLE) - 20 or self.head.y < 0:
             self.gameOver()
 
     def update(self):
@@ -73,7 +72,7 @@ class Serpent:
             suivant = suivant.suivant
 
     def render(self, surf, scoreFont):
-        self.head.render(surf)
+        self.head.render(surf, (255, 255, 255))
 
         scoreText = scoreFont.render(str(self.score), True, (255, 255, 255))
         surf.blit(scoreText, (20, 20))

@@ -20,10 +20,10 @@ class Anneau:
             
             self.suivant.update()
 
-    def render(self, surf):
-        pygame.draw.rect(surf, (255, 255, 255), (self.x, self.y, 20, 20))
+    def render(self, surf, color):
+        pygame.draw.rect(surf, color, (self.x, self.y, 20, 20))
         if self.suivant != None:
-            self.suivant.render(surf)
+            self.suivant.render(surf, color)
 
     def ajout(self):
         if self.suivant == None:
