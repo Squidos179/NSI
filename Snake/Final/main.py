@@ -6,6 +6,16 @@ import snake2
 from constants import MULTIPLE, LARG, HAUT
 
 def collisionSerpents(serpent1, serpent2):
+    """
+    Vérifie s'il y a une collision entre deux serpents.
+
+    Args:
+        serpent1 (Serpent): Le premier serpent.
+        serpent2 (Serpent): Le deuxième serpent.
+
+    Returns:
+        int: 1 si le serpent1 a une collision avec serpent2, 2 si le serpent2 a une collision avec serpent1, 0 sinon.
+    """
     suivant1 = serpent1.head.suivant
     suivant2 = serpent2.head.suivant
 
@@ -22,21 +32,43 @@ def collisionSerpents(serpent1, serpent2):
         
         suivant1 = suivant1.suivant
 
+    return 0
+
 def collision_pomme(serpent1, serpent2 = None):
-        global pommex, pommey
-        if serpent1.head.x > pommex - 20 and serpent1.head.y > pommey - 20 and serpent1.head.x < pommex + 20 and serpent1.head.y < pommey + 20:
-            pommex, pommey = randint(0, LARG - 1) * 20, randint(0, HAUT) * 20
-            serpent1.score += 1
+    """
+    Vérifie s'il y a une collision entre la tête du serpent et la pomme.
+    
+    Args:
+        serpent1 (Serpent): Le premier serpent.
+        serpent2 (Serpent): Le deuxième serpent. Par défaut, None.
+
+    Returns:
+        None : on modifie directement les attributs des serpents.
+    """
+    global pommex, pommey
+    if serpent1.head.x > pommex - 20 and serpent1.head.y > pommey - 20 and serpent1.head.x < pommex + 20 and serpent1.head.y < pommey + 20:
+        pommex, pommey = randint(0, LARG - 1) * 20, randint(0, HAUT) * 20
+        serpent1.score += 1
+        for i in range(5):
+            serpent1.head.ajout()
+    if serpent2 != None:
+        if serpent2.head.x > pommex - 20 and serpent2.head.y > pommey - 20 and serpent2.head.x < pommex + 20 and serpent2.head.y < pommey + 20:
+            pommex, pommey = randint(0, LARG) * 20, randint(0, LARG) * 20
+            serpent2.score += 1
             for i in range(5):
-                serpent1.head.ajout()
-        if serpent2 != None:
-            if serpent2.head.x > pommex - 20 and serpent2.head.y > pommey - 20 and serpent2.head.x < pommex + 20 and serpent2.head.y < pommey + 20:
-                pommex, pommey = randint(0, LARG) * 20, randint(0, LARG) * 20
-                serpent2.score += 1
-                for i in range(5):
-                    serpent2.head.ajout()
+                serpent2.head.ajout()
 
 def damier(colors, surf):
+    """
+    Dessine un damier sur la surface.
+    
+    Args:
+        colors (list): Liste de couleurs.
+        surf (pygame.Surface): La surface sur laquelle on dessine.
+
+    Returns:
+        None : On modifie directement la surface.
+    """
     for i in range(0 , MULTIPLE):
         for p in range(0, MULTIPLE):
             pygame.draw.rect(surf, colors[p%2], (i * LARG, p * HAUT, 20, 20))
