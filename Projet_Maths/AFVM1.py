@@ -3,12 +3,12 @@ from numpy import sign
 
 def equation_second_degre(a, b, c):
     """Calcul de la racine d' une équation du 2nd degré ax²+bx+c
-    @params :
-    - a : coef du terme de degré 2
-    - b : coef du terme de degré 1
-    - c : coef du terme de degré 0
-    @returns :
-    - 2 ou 1 ou None
+    args :
+        - a : coef du terme de degré 2
+        - b : coef du terme de degré 1
+        - c : coef du terme de degré 0
+    return :
+        - 2 ou 1 ou None
     """
     try:
         if (type(a) != float and type(a) != int) or (type(b) != float and type(b) != int) or (type(c) != float and type(c) != int):

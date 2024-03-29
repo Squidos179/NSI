@@ -1,32 +1,25 @@
-def derive(fonc, a, h=1e-3, p=1e-6):
-    """Calcul du nombre dérivé d' un fonction en un point
-    On divise par deux l' intervalle à chaque itération
-    @params :
-    - fonc : fonction python
-    - a : point dont on veut la valeur du dérivé
-    - h : écart initial
-    - p : précision voulue (ou écart entre deux valeurs de dérivé
-    successives)
-    @returns :
-    - Une valeur approchée du nombre dérivé
-    >>> derive(lambda x:x**2, 3)
-    6
-    >>> derive(lambda x:x**3, 2)
-    12
+from numpy import sign
+
+def racine_recur(fonc, a, b, p=1e-6):
+    """Calcul de la racine d' une fonction par dichotomie
+    args :
+        - fonc : fonction python
+        - a : borne plus petite que la racine
+        - b : borne plus grande que la racine
+        - p : précision (ou écart max entre la sol. et valeur théorique)
+    return :
+        - Une valeur approchée de la racine
     """
-    try:
-        derivation = (fonc(a+h)-fonc(a))/h
-        if derivation < p:
-            raise Exception
-    except Exception:
-        print("Une valeur n'est pas bonne")
+    x = (a+b)/2
+    y = fonc(x)
+    if b - a < p:
+        return (a, b)
+    elif y > 0:
+        return racine_recur(fonc, a, x, p)
     else:
-        while h > p:
-            h /= 2
-            derivation = (fonc(a+h)-fonc(a))/h
-        return derivation
+        return racine_recur(fonc, x, b, p)
 
 def f(x):
-    return x**2
+    return x**2 + 3*x
 
-print(derive(f, 7))
+print(racine_recur(f, -4, -2))

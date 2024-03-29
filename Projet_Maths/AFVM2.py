@@ -1,3 +1,5 @@
+from numpy import sign
+
 def racine(fonc, a, b, p=1e-6):
     """Calcul de la racine d' une fonction par dichotomie
     @params :
@@ -18,15 +20,14 @@ def racine(fonc, a, b, p=1e-6):
         while jaaj > p:
             x = (a+b)/2
             y = fonc(x)
-            print(y)
             if y > 0:
                 b = x
             else:
                 a = x
-            jaaj = b-a
+            jaaj = b - a
         return (a, b)
-
+        
 def f(x):
-    return x**3 + 5*x**2 + 3*x + 8
+    return x**2 + 3*x
 
-print(racine(f, -8, -4))
+print(racine(f, -3.5, -2.5))
