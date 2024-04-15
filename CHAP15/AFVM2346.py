@@ -1,11 +1,13 @@
 import string
 import random
 
+alphabet = {'A': 'O', 'B': 'J', 'C': 'Q', 'D': 'D', 'E': 'T', 'F': 'R', 'G': 'S', 'H': 'B', 'I': 'Y', 'J': 'Z', 'K': 'K', 'L': 'C', 'M': 'H', 'N': 'X', 'O': 'A', 'P': 'M', 'Q': 'I', 'R': 'G', 'S': 'N', 'T': 'P', 'U': 'E', 'V': 'V', 'W': 'L', 'X': 'F', 'Y': 'U', 'Z': 'W'}
+
 def numero_lettre():
     dic = {}
     p = 0
     for i in string.ascii_uppercase:
-        dic[i] = p
+        dic[i] = p + 1
         p += 1
     return dic
 
@@ -13,7 +15,7 @@ def numero_lettrei():
     dic = {}
     p = 0
     for i in string.ascii_uppercase:
-        dic[p] = i
+        dic[p + 1] = i
         p += 1
     return dic
 
@@ -69,4 +71,32 @@ def decodage(string, table=genere_table()):
         res += inv[i]
     return res
 
-print(decodage("ZOOZ", {'A': 'O', 'B': 'J', 'C': 'Q', 'D': 'D', 'E': 'T', 'F': 'R', 'G': 'S', 'H': 'B', 'I': 'Y', 'J': 'Z', 'K': 'K', 'L': 'C', 'M': 'H', 'N': 'X', 'O': 'A', 'P': 'M', 'Q': 'I', 'R': 'G', 'S': 'N', 'T': 'P', 'U': 'E', 'V': 'V', 'W': 'L', 'X': 'F', 'Y': 'U', 'Z': 'W'}))
+def codage_cle_chiffrement(string, encode):
+    ref = numero_lettre()
+    refi = numero_lettrei()
+    print(ref)
+    print(refi)
+    res = ""
+    p = 0
+    for i in string:
+        if i != " ":
+            res += refi[(ref[i] + ref[encode[p % len(encode)]]) % 26]
+            p += 1
+        else:
+            res += " "
+    return res
+
+def decodage_cle_chiffrement(string, encode):
+    ref = numero_lettre()
+    refi = numero_lettrei()
+    res = ""
+    p = 0
+    for i in string:
+        if i != " ":
+            res += refi[(ref[i] - ref[encode[p % len(encode)]]) % 26]
+            p += 1
+        else:
+            res += " "
+    return res
+
+print(codage_cle_chiffrement("TEST", "JAAJ"))
