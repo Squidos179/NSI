@@ -3,7 +3,7 @@ def codage_binaire(a, b):
     res = ""
     for i in range(len(a)):
         t = ord(a[i]) ^ ord(b[i % len(b)])
-        print(t)
+        print(chr(t))
         res += chr(t)
     return res
 
